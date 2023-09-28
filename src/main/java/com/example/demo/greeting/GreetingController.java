@@ -1,8 +1,6 @@
 package com.example.demo.greeting;
 
 
-import com.example.demo.GreetingComponent;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
