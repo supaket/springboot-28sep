@@ -1,49 +1,68 @@
 package com.example.demo.user.service;
 
+import com.example.demo.user.entity.UserEntity;
 import com.example.demo.user.model.IUserStore;
 import com.example.demo.user.model.UserDto;
+import com.example.demo.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
-    List<UserDto> users;
 
-    public UserService(IUserStore userStore){
-        this.users = userStore.getUsers();
+    private final UserRepository userRepo;
+    public UserService(UserRepository userRepo){
+        this.userRepo = userRepo;
     }
+
     public void create(UserDto user){
-        this.users.add(user);
+        UserEntity userEntity = new UserEntity();
+        userEntity.setName(user.getName());
+        userEntity.setId(user.getId());
+        userEntity.setAge(user.getAge());
+       this.userRepo.save(userEntity);
     }
 
     public List<UserDto> get() {
-        return users;
+        List<UserDto> userDtos = new ArrayList<>();
+
+        Iterable<UserEntity> entities = this.userRepo.findAll();
+        entities.forEach(userEntity -> {
+            UserDto dto = new UserDto();
+            dto.setId(userEntity.getId());
+            dto.setAge(userEntity.getAge());
+            dto.setName(userEntity.getName());
+            userDtos.add(dto);
+        });
+        return userDtos;
     }
 
     public void delete(int id) {
-        UserDto user = new UserDto();
-        user.setId(id);
-        this.users.remove(user);
+      this.userRepo.deleteById(id);
     }
 
     public UserDto get(int id) {
-        final UserDto user = new UserDto();
-        users.forEach(userDto -> {
-            if(userDto.getId() == id) {
-                user.setId(userDto.getId());
-                user.setName(userDto.getName());
-                user.setAge(userDto.getAge());
-            }
-        });
-        return user;
+        Optional<UserEntity> entity = this.userRepo.findById(id);
+        if(entity.isPresent()) {
+            final UserDto user = new UserDto();
+            user.setId(entity.get().getId());
+            user.setName(entity.get().getName());
+            user.setAge(entity.get().getAge());
+            return user;
+        }
+        return null; // TODO Handle not found
     }
 
-    public void update(int id, UserDto user) {
-        UserDto existingUser = this.get(id);
-        if(existingUser!=null) {
-            users.remove(existingUser);
-            users.add(user);
+    public void update(int id, UserDto userDto) {
+        Optional<UserEntity> entity = this.userRepo.findById(id);
+        if (entity.isPresent()) {
+            final UserDto user = new UserDto();
+            entity.get().setName(userDto.getName());
+            entity.get().setAge(userDto.getAge());
+            this.userRepo.save(entity.get());
         }
     }
 }
