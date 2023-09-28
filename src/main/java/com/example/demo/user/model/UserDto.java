@@ -1,4 +1,4 @@
-package com.example.demo.user;
+package com.example.demo.user.model;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;

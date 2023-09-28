@@ -1,6 +1,7 @@
-package com.example.demo.user;
+package com.example.demo.user.service;
 
-import org.apache.catalina.User;
+import com.example.demo.user.model.IUserStore;
+import com.example.demo.user.model.UserDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

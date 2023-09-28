@@ -1,7 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.user.IUserStore;
-import com.example.demo.user.UserStore;
+import com.example.demo.user.model.IUserStore;
+import com.example.demo.user.model.UserStore;
 import org.springframework.boot.Banner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;

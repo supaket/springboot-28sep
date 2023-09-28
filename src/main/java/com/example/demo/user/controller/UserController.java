@@ -1,5 +1,7 @@
-package com.example.demo.user;
+package com.example.demo.user.controller;
 
+import com.example.demo.user.model.UserDto;
+import com.example.demo.user.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

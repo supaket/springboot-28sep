@@ -1,8 +1,8 @@
-package com.example.demo.user;
+package com.example.demo.user.model;
 
 import java.util.ArrayList;
 
-public class UserStore implements IUserStore{
+public class UserStore implements IUserStore {
     ArrayList<UserDto> store;
 
     public UserStore(){
