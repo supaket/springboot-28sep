@@ -40,12 +40,9 @@ public class UserService {
 
     public void update(int id, UserDto user) {
         UserDto existingUser = this.get(id);
-        if(existingUser !=null) {
-            existingUser.setId(user.getId());
-            existingUser.setName(user.getName());
-            existingUser.setAge(user.getAge());
-            users.remove(user);
-            users.add(existingUser);
+        if(existingUser!=null) {
+            users.remove(existingUser);
+            users.add(user);
         }
     }
 }
