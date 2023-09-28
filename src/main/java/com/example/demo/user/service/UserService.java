@@ -1,7 +1,7 @@
 package com.example.demo.user.service;
 
 import com.example.demo.user.entity.UserEntity;
-import com.example.demo.user.model.IUserStore;
+import com.example.demo.user.exception.UserNotFoundException;
 import com.example.demo.user.model.UserDto;
 import com.example.demo.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -53,7 +53,7 @@ public class UserService {
             user.setAge(entity.get().getAge());
             return user;
         }
-        return null; // TODO Handle not found
+        throw new UserNotFoundException(id) ;
     }
 
     public void update(int id, UserDto userDto) {
