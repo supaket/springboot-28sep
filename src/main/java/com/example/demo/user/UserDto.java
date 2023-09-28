@@ -1,11 +1,17 @@
 package com.example.demo.user;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 public class UserDto {
 
+    @Size(min=5, max=10)
+    @NotNull
     private String name;
 
+    @Min(value=18)
     private int age;
 
     public String getName() {
