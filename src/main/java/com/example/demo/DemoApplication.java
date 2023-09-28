@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -20,6 +21,11 @@ public class DemoApplication {
 	@Bean
 	public IUserStore getInMemoryStore(){
 		return new UserStore();
+	}
+
+	@Bean
+	public RestTemplate getResTemplate() {
+		return new RestTemplate();
 	}
 
 	public static void main(String[] args) {
