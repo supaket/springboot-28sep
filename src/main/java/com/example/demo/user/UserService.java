@@ -9,8 +9,8 @@ import java.util.List;
 public class UserService {
     List<UserDto> users;
 
-    public UserService(){
-        this.users = new ArrayList<>();
+    public UserService(IUserStore userStore){
+        this.users = userStore.getUsers();
     }
     public void create(UserDto user){
         this.users.add(user);
@@ -20,9 +20,9 @@ public class UserService {
         return users;
     }
 
-    public void delete(String name) {
+    public void delete(int id) {
         UserDto user = new UserDto();
-        user.setName(name);
+        user.setId(id);
         this.users.remove(user);
     }
 }

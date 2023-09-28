@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.example.demo.user.IUserStore;
+import com.example.demo.user.UserStore;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +18,11 @@ public class DemoApplication {
 	@Bean
 	public IRandom getRandom(){
 		return new LockRandom();
+	}
+
+	@Bean
+	public IUserStore getInMemoryStore(){
+		return new UserStore();
 	}
 
 	public static void main(String[] args) {

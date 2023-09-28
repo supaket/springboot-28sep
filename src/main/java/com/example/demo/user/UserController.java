@@ -2,6 +2,7 @@ package com.example.demo.user;
 
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,13 +20,13 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public void createUsers(@RequestBody UserDto user) {
+    public void createUsers(@Valid @RequestBody UserDto user) {
         userService.create(user);
     }
 
-    @DeleteMapping("/users/{name}")
-    public void delete(@PathVariable String name){
-        userService.delete(name);
+    @DeleteMapping("/users/{id}")
+    public void delete(@PathVariable int id){
+        userService.delete(id);
     }
 
 }
